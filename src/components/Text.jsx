@@ -1,0 +1,46 @@
+import { Text as NativeText, StyleSheet } from "react-native"
+import theme from "../theme"
+
+const styles = StyleSheet.create({
+  text: {
+    color: theme.colors.textPrimary,
+    fontSize: theme.fontSizes.body,
+    fontFamily: theme.fonts.main,
+    fontWeight: theme.fontWeights.normal,
+  },
+  colorSecondary: {
+    color: theme.colors.textSecondary,
+  },
+  colorPrimary: {
+    color: theme.colors.primary,
+  },
+  colorBarTab: {
+    color: theme.colors.textBarTab,
+  },
+  colorWhite: {
+    color: theme.colors.white,
+  },
+  textSubheading: {
+    fontSize: theme.fontSizes.subheading,
+  },
+  textBold: {
+    fontWeight: theme.fontWeights.bold,
+  },
+})
+
+const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
+  const textStyle = [
+    styles.text,
+    color === "primary" && styles.colorPrimary,
+    color === "textSecondary" && styles.colorSecondary,
+    color === "barTab" && styles.colorBarTab,
+    color === "white" && styles.colorWhite,
+    fontSize === "subheading" && styles.textSubheading,
+    fontWeight === "bold" && styles.textBold,
+    style,
+  ]
+
+  return <NativeText style={textStyle} {...props} />
+}
+
+export default Text
