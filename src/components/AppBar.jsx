@@ -1,7 +1,8 @@
 import Constants from "expo-constants"
-import { View, StyleSheet, Pressable, Alert } from "react-native"
+import { View, StyleSheet, Pressable, Alert, ScrollView } from "react-native"
 import Text from "./Text"
 import theme from "../theme"
+import { Link } from "react-router-native"
 
 const styles = StyleSheet.create({
   container: {
@@ -21,11 +22,13 @@ const styles = StyleSheet.create({
 const AppBarTab = ({ tabName }) => {
   return (
     <View style={styles.tab}>
-      <Pressable onPress={() => Alert.alert("Info", `You pressed ${tabName}`)}>
+      <Link to={`/${tabName}`}>
+        {/* <Pressable onPress={() => Alert.alert("Info", "You pressed something")}> */}
         <Text color="barTab" fontWeight="bold">
           {tabName}
         </Text>
-      </Pressable>
+        {/* </Pressable> */}
+      </Link>
     </View>
   )
 }
@@ -33,8 +36,10 @@ const AppBarTab = ({ tabName }) => {
 const AppBar = () => {
   return (
     <View style={styles.container}>
-      <AppBarTab tabName="Repositories" />
-      <AppBarTab tabName="Login" />
+      <ScrollView horizontal>
+        <AppBarTab tabName="Repositories" />
+        <AppBarTab tabName="SignIn" />
+      </ScrollView>
     </View>
   )
 }
