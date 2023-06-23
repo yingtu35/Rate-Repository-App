@@ -1,6 +1,6 @@
 import { View, StyleSheet, Pressable, Alert } from "react-native"
-import Text from "./Text"
-import useSignOut from "../hooks/useSignOut"
+import Text from "../Text"
+import useSignOut from "../../hooks/useSignOut"
 import { useNavigate } from "react-router-native"
 
 const styles = StyleSheet.create({

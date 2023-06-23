@@ -1,12 +1,12 @@
 import Constants from "expo-constants"
 import { View, StyleSheet, ScrollView } from "react-native"
-import Text from "./Text"
-import theme from "../theme"
+import Text from "../Text"
+import theme from "../../theme"
 import SignOut from "./SignOut"
-import { Link } from "react-router-native"
+import AppBarTab from "./AppBarTab"
 
 import { useQuery } from "@apollo/client"
-import { GET_USER } from "../graphql/queries"
+import { GET_USER } from "../../graphql/queries"
 
 const styles = StyleSheet.create({
   container: {
@@ -15,25 +15,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
   },
-  tab: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 15,
-  },
 })
-
-const AppBarTab = ({ tabName }) => {
-  return (
-    <View style={styles.tab}>
-      <Link to={`/${tabName}`}>
-        <Text color="barTab" fontWeight="bold">
-          {tabName}
-        </Text>
-      </Link>
-    </View>
-  )
-}
 
 const AppBar = () => {
   // TODO: need a "me" query to access current user information
