@@ -1,6 +1,7 @@
-import { View, StyleSheet, Image } from "react-native"
-import theme from "../theme"
-import Text from "./Text"
+import { View, StyleSheet, Image } from "react-native";
+import RepositoryStat from "./RepositoryStat";
+import theme from "../../theme";
+import Text from "../Text";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,33 +33,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
   },
-})
-
-const RepoStat = ({ statNumber, statName }) => {
-  // TODO: Convert statNumber to k, m
-  const convertNumber = (number) => {
-    if (number >= 1000000000) {
-      return Number(number / 1000000000).toFixed(1) + "b"
-    } else if (number >= 1000000) {
-      return Number(number / 1000000).toFixed(1) + "m"
-    } else if (number >= 1000) {
-      return Number(number / 1000).toFixed(1) + "k"
-    } else {
-      return number
-    }
-  }
-  statNumber = convertNumber(statNumber)
-  return (
-    <View style={{ alignItems: "center", gap: 5 }}>
-      <Text fontWeight="bold">{statNumber}</Text>
-      <Text color="textSecondary">{statName}</Text>
-    </View>
-  )
-}
+});
 
 const RepositoryItem = ({ repo }) => {
   return (
-    <View style={styles.container}>
+    <View testID="repositoryItem" style={styles.container}>
       <View style={styles.repoInfo}>
         <Image style={styles.avatar} source={{ uri: repo.ownerAvatarUrl }} />
         <View style={styles.repoDetails}>
@@ -70,13 +49,13 @@ const RepositoryItem = ({ repo }) => {
         </View>
       </View>
       <View style={styles.repoStats}>
-        <RepoStat statNumber={repo.stargazersCount} statName="Stars" />
-        <RepoStat statNumber={repo.forksCount} statName="Forks" />
-        <RepoStat statNumber={repo.reviewCount} statName="Reviews" />
-        <RepoStat statNumber={repo.ratingAverage} statName="Rating" />
+        <RepositoryStat statNumber={repo.stargazersCount} statName="Stars" />
+        <RepositoryStat statNumber={repo.forksCount} statName="Forks" />
+        <RepositoryStat statNumber={repo.reviewCount} statName="Reviews" />
+        <RepositoryStat statNumber={repo.ratingAverage} statName="Rating" />
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default RepositoryItem
+export default RepositoryItem;
