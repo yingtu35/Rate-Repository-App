@@ -1,11 +1,12 @@
 // import { useState, useEffect } from "react"
-import { useQuery } from "@apollo/client"
-import { GET_REPOSITORIES } from "../graphql/queries"
+import { useQuery } from "@apollo/client";
+import { GET_REPOSITORIES } from "../graphql/queries";
 
-const useRepositories = () => {
+const useRepositories = ({ orderDirection, orderBy, searchKeyword }) => {
   const { loading, error, data } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: "catch-and-network",
-  })
+    variables: { orderDirection, orderBy, searchKeyword },
+  });
   // console.log(loading)
   // console.log(data)
   // const repositories = data.repositories.edges.map((edge) => edge.node)
@@ -26,7 +27,7 @@ const useRepositories = () => {
   //   fetchRepositories()
   // }, [])
 
-  return { data, loading, error }
-}
+  return { data, loading, error };
+};
 
-export default useRepositories
+export default useRepositories;

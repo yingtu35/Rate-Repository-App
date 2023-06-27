@@ -1,11 +1,41 @@
-import { Pressable, FlatList, View } from "react-native";
+import { Pressable, FlatList, View, StyleSheet } from "react-native";
 import RepositoryItem from "./RepositoryItem";
 import Text from "../Text";
 import ItemSeparator from "../ItemSeparator";
 import { useNavigate } from "react-router-native";
+import { Picker } from "@react-native-picker/picker";
+import { useRef } from "react";
+import TextInput from "../TextInput";
+import theme from "../../theme";
 
-const RepositoryListContainer = ({ loading, error, data }) => {
+const styles = StyleSheet.create({
+  searchInput: {
+    // borderWidth: 1,
+    padding: 10,
+    marginBottom: 5,
+    // borderRadius: 5,
+    height: 50,
+    backgroundColor: theme.colors.white,
+  },
+  picker: { backgroundColor: theme.colors.white, marginBottom: 5 },
+});
+
+const RepositoryListContainer = ({
+  loading,
+  error,
+  data,
+  searchKeyword,
+  setSearchKeyword,
+  orderMethod,
+  setOrderMethod,
+}) => {
   const navigate = useNavigate();
+  // only for Android
+  const pickerRef = useRef();
+
+  const openMenu = () => pickerRef.current.focus();
+  const closeMenu = () => pickerRef.current.blur();
+  // only for Android
 
   if (loading)
     return (
@@ -28,6 +58,29 @@ const RepositoryListContainer = ({ loading, error, data }) => {
   return (
     <FlatList
       data={repositoryNodes}
+      ListHeaderComponent={
+        <>
+          <TextInput
+            onChangeText={(text) => setSearchKeyword(text)}
+            onBlur={() => {}}
+            value={searchKeyword}
+            placeholder="Search repositories"
+            // error={showError}
+            style={styles.searchInput}
+            // {...props}
+          />
+          <Picker
+            style={styles.picker}
+            ref={pickerRef}
+            selectedValue={orderMethod}
+            onValueChange={(itemValue) => setOrderMethod(itemValue)}
+          >
+            <Picker.Item label="Latest repositories" value={0} />
+            <Picker.Item label="Highest rated repositories" value={1} />
+            <Picker.Item label="Lowest rated repositories" value={2} />
+          </Picker>
+        </>
+      }
       ItemSeparatorComponent={ItemSeparator}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (

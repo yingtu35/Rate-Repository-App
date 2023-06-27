@@ -7,8 +7,16 @@ import {
 } from "./fragments";
 
 export const GET_REPOSITORIES = gql`
-  query getRepositories {
-    repositories {
+  query getRepositories(
+    $orderDirection: OrderDirection
+    $orderBy: AllRepositoriesOrderBy
+    $searchKeyword: String
+  ) {
+    repositories(
+      orderDirection: $orderDirection
+      orderBy: $orderBy
+      searchKeyword: $searchKeyword
+    ) {
       totalCount
       pageInfo {
         ...pageInfoDetails
