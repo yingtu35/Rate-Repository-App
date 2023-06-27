@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client"
+import { gql } from "@apollo/client";
 
 export const REPOSITORY_DETAILS = gql`
   fragment repositoryDetails on Repository {
@@ -11,8 +11,9 @@ export const REPOSITORY_DETAILS = gql`
     ownerAvatarUrl
     description
     language
+    url
   }
-`
+`;
 
 export const PAGE_INFO_DETAILS = gql`
   fragment pageInfoDetails on PageInfo {
@@ -21,29 +22,24 @@ export const PAGE_INFO_DETAILS = gql`
     startCursor
     endCursor
   }
-`
-
-// const REVIEW_DETAILS = gql`
-//   fragment reviewDetails on Review {
-//     id
-//     user {
-//       ...userDetails
-//     }
-//     repository {
-//       ...repositoryDetails
-//     }
-//     userId
-//     repositoryId
-//     rating
-//     createdAt
-//     text
-//   }
-//   ${REPOSITORY_DETAILS}
-//   ${USER_DETAILS}
-// `
+`;
 
 export const USER_DETAILS = gql`
   fragment userDetails on User {
+    id
     username
   }
-`
+`;
+
+export const REVIEW_DETAILS = gql`
+  fragment reviewDetails on Review {
+    id
+    user {
+      ...userDetails
+    }
+    rating
+    createdAt
+    text
+  }
+  ${USER_DETAILS}
+`;

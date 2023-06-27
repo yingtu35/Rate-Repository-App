@@ -1,4 +1,4 @@
-import useRepositories from "../hooks/useRepositories";
+import useRepositories from "../../hooks/useRepositories";
 import RepositoryListContainer from "./RepositoryListContainer";
 
 const RepositoryList = () => {

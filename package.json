@@ -25,7 +25,8 @@
     "react-native": "0.71.8",
     "react-native-web": "~0.18.10",
     "react-router-native": "^6.13.0",
-    "yup": "^1.2.0"
+    "yup": "^1.2.0",
+    "expo-linking": "~4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
