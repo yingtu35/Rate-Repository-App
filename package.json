@@ -15,8 +15,10 @@
     "@expo/metro-config": "^0.7.1",
     "@expo/webpack-config": "^18.0.1",
     "@react-native-async-storage/async-storage": "1.17.11",
+    "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
     "expo": "~48.0.18",
+    "expo-linking": "~4.0.1",
     "expo-status-bar": "~1.4.4",
     "formik": "^2.4.2",
     "graphql": "^15.8.0",
@@ -25,8 +27,7 @@
     "react-native": "0.71.8",
     "react-native-web": "~0.18.10",
     "react-router-native": "^6.13.0",
-    "yup": "^1.2.0",
-    "expo-linking": "~4.0.1"
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

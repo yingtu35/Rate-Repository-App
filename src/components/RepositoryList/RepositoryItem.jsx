@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   repoDetails: {
     padding: 10,
     gap: 5,
+    flexShrink: 1,
   },
   language: {
     alignSelf: "flex-start",
@@ -42,7 +43,9 @@ const RepositoryItem = ({ repo }) => {
         <Image style={styles.avatar} source={{ uri: repo.ownerAvatarUrl }} />
         <View style={styles.repoDetails}>
           <Text fontWeight="bold">{repo.fullName}</Text>
-          <Text color="textSecondary">{repo.description}</Text>
+          <Text color="textSecondary" style={{ flexShrink: 1 }}>
+            {repo.description}
+          </Text>
           <View style={styles.language}>
             <Text color="white">{repo.language}</Text>
           </View>
