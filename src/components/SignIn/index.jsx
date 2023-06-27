@@ -7,14 +7,16 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [signIn] = useSignIn();
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, actions) => {
     const { username, password } = values;
     try {
-      const { data } = await signIn({ username, password });
+      await signIn({ username, password });
       // console.log(data)
       navigate("/");
     } catch (error) {
+      // TODO: display error message to the view
       console.log(error);
+      actions.setErrors({ username: error.message, password: error.message });
     }
   };
 

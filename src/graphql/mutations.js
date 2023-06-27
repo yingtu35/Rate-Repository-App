@@ -22,3 +22,12 @@ export const CREATE_REVIEW = gql`
   }
   ${REVIEW_DETAILS}
 `;
+
+export const CREATE_USER = gql`
+  mutation createNewUser($user: CreateUserInput) {
+    createUser(user: $user) {
+      ...userDetails
+    }
+  }
+  ${USER_DETAILS}
+`;

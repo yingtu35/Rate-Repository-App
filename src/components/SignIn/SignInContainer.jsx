@@ -5,7 +5,7 @@ import SignInForm from "./SignInForm";
 const SignInSchema = yup.object().shape({
   username: yup
     .string()
-    .min(4, "Username should be at least 4 characters")
+    .min(5, "Length of username should be between 5 and 30")
     .required("Username is required"),
   password: yup.string().required("Password is required"),
 });
