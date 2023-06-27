@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-native";
 import useSignIn from "../../hooks/useSignIn";
 import SignInContainer from "./SignInContainer";
 
-export const SignIn = () => {
+const SignIn = () => {
   const navigate = useNavigate();
   const [signIn] = useSignIn();
 

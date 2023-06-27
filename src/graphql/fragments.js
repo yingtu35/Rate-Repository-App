@@ -37,6 +37,7 @@ export const REVIEW_DETAILS = gql`
     user {
       ...userDetails
     }
+    repositoryId
     rating
     createdAt
     text

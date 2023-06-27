@@ -1,6 +1,6 @@
-import { Link } from "react-router-native"
-import { View, StyleSheet } from "react-native"
-import Text from "../Text"
+import { Link } from "react-router-native";
+import { View, StyleSheet } from "react-native";
+import Text from "../Text";
 
 const styles = StyleSheet.create({
   tab: {
@@ -9,18 +9,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 15,
   },
-})
+});
 
-const AppBarTab = ({ tabName }) => {
+const AppBarTab = ({ tabName, path }) => {
   return (
     <View style={styles.tab}>
-      <Link to={`/${tabName}`}>
+      <Link to={`/${path}`}>
         <Text color="barTab" fontWeight="bold">
           {tabName}
         </Text>
       </Link>
     </View>
-  )
-}
+  );
+};
 
-export default AppBarTab
+export default AppBarTab;
