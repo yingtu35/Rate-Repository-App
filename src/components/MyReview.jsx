@@ -1,8 +1,7 @@
 import { FlatList, Pressable, View, StyleSheet, Alert } from "react-native";
 import ItemSeparator from "./ItemSeparator";
 import Text from "./Text";
-import { useQuery } from "@apollo/client";
-import { GET_USER } from "../graphql/queries";
+import useCurrentUser from "../hooks/useCurrentUser";
 import useDeleteReview from "../hooks/useDeleteReview";
 import ReviewItem from "./ReviewItem";
 import theme from "../theme";
@@ -120,9 +119,7 @@ const MyReviewContainer = ({ loading, error, data, deleteReview, refetch }) => {
 };
 
 const MyReview = () => {
-  const { loading, error, data, refetch } = useQuery(GET_USER, {
-    variables: { withReviews: true },
-  });
+  const { loading, error, data, refetch } = useCurrentUser(true);
   const [deleteReview] = useDeleteReview();
 
   return (

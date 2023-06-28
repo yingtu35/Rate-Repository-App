@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
 const RepositoryListContainer = ({
   loading,
   error,
-  data,
+  repositories,
+  fetchMore,
   searchKeyword,
   setSearchKeyword,
   orderMethod,
@@ -52,9 +53,14 @@ const RepositoryListContainer = ({
     );
   }
 
-  const repositoryNodes = data.repositories
-    ? data.repositories.edges.map((edge) => edge.node)
+  const repositoryNodes = repositories
+    ? repositories.edges.map((edge) => edge.node)
     : [];
+
+  const onEndReach = () => {
+    console.log("end. fetch more data");
+    fetchMore();
+  };
   return (
     <FlatList
       data={repositoryNodes}
@@ -90,6 +96,8 @@ const RepositoryListContainer = ({
       )}
       ListFooterComponent={ItemSeparator}
       initialNumToRender={6}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
       // other props
     />
   );

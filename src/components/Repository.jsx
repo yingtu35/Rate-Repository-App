@@ -66,7 +66,12 @@ const RepositoryInfo = ({ repository }) => {
 
 const Repository = () => {
   const { repositoryId } = useParams();
-  const { loading, error, data } = useRepository(repositoryId);
+  const first = 5;
+  const variables = {
+    repositoryId,
+    first,
+  };
+  const { loading, error, repository, fetchMore } = useRepository(variables);
 
   if (loading)
     return (
@@ -82,10 +87,14 @@ const Repository = () => {
     );
   }
 
-  const repository = data.repository;
-  const reviewsNode = data.repository
-    ? data.repository.reviews.edges.map((edge) => edge.node)
+  const reviewsNode = repository
+    ? repository.reviews.edges.map((edge) => edge.node)
     : [];
+
+  const onEndReached = () => {
+    console.log("end reached!");
+    fetchMore();
+  };
 
   return (
     <FlatList
@@ -103,6 +112,8 @@ const Repository = () => {
       ItemSeparatorComponent={ItemSeparator}
       ListFooterComponent={ItemSeparator}
       initialNumToRender={10}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
     />
   );
 };

@@ -1,16 +1,32 @@
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
-import Constants from "expo-constants"
-import { setContext } from "@apollo/client/link/context"
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+import Constants from "expo-constants";
+import { setContext } from "@apollo/client/link/context";
+import { relayStylePagination } from "@apollo/client/utilities";
 
 const httpLink = createHttpLink({
   uri: Constants.manifest.extra.apolloUri,
-})
+});
+
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        repositories: relayStylePagination(),
+      },
+    },
+    Repository: {
+      fields: {
+        reviews: relayStylePagination(),
+      },
+    },
+  },
+});
 
 const createApolloClient = (authStorage) => {
   const authLink = setContext(async (_, { headers }) => {
     try {
       // get the authentication token from auth storage
-      let token = await authStorage.getAccessToken()
+      let token = await authStorage.getAccessToken();
       // console.log(token)
 
       return {
@@ -18,20 +34,20 @@ const createApolloClient = (authStorage) => {
           ...headers,
           authorization: token ? `Bearer ${token.accessToken}` : null,
         },
-      }
+      };
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return {
         headers,
-      }
+      };
     }
-  })
+  });
 
   return new ApolloClient({
     link: authLink.concat(httpLink),
     // link: httpLink,
-    cache: new InMemoryCache(),
-  })
-}
+    cache,
+  });
+};
 
-export default createApolloClient
+export default createApolloClient;

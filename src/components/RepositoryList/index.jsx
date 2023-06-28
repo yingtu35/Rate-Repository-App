@@ -22,19 +22,23 @@ const RepositoryList = () => {
   const [orderMethod, setOrderMethod] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [debounceSearch] = useDebounce(searchKeyword, 1000);
+  const first = 5;
 
   const order = orderMapping[orderMethod];
-  const values = {
+  const variables = {
     ...order,
     searchKeyword: debounceSearch,
+    first,
   };
-  const { loading, error, data } = useRepositories(values);
+  const { loading, error, repositories, fetchMore } =
+    useRepositories(variables);
 
   return (
     <RepositoryListContainer
       loading={loading}
       error={error}
-      data={data}
+      repositories={repositories}
+      fetchMore={fetchMore}
       searchKeyword={searchKeyword}
       setSearchKeyword={setSearchKeyword}
       orderMethod={orderMethod}

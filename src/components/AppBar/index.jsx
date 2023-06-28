@@ -4,9 +4,7 @@ import Text from "../Text";
 import theme from "../../theme";
 import SignOut from "./SignOut";
 import AppBarTab from "./AppBarTab";
-
-import { useQuery } from "@apollo/client";
-import { GET_USER } from "../../graphql/queries";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const { loading, error, data } = useQuery(GET_USER);
+  const { loading, error, data } = useCurrentUser();
 
   if (loading) return null;
   if (error) return <Text>{error.message}</Text>;

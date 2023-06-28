@@ -16,7 +16,7 @@ const CreateReview = () => {
     };
     try {
       const { data } = await createReview(review);
-      // console.log(data);
+      console.log(data);
       navigate(`/Repository/${data.createReview.repositoryId}`);
     } catch (error) {
       // TODO: display error message to the view
