@@ -55,7 +55,14 @@ const MyReviewItem = ({ review, navigate, onDelete }) => {
   );
 };
 
-const MyReviewContainer = ({ loading, error, data, deleteReview, refetch }) => {
+const MyReviewContainer = ({
+  loading,
+  error,
+  me,
+  deleteReview,
+  refetch,
+  fetchMore,
+}) => {
   if (loading) {
     return (
       <View>
@@ -96,9 +103,12 @@ const MyReviewContainer = ({ loading, error, data, deleteReview, refetch }) => {
     );
   };
 
-  const reviewNodes = data.me
-    ? data.me.reviews.edges.map((edge) => edge.node)
-    : [];
+  const onEndReached = () => {
+    console.log("the end has reached");
+    fetchMore();
+  };
+
+  const reviewNodes = me ? me.reviews.edges.map((edge) => edge.node) : [];
 
   return (
     <FlatList
@@ -114,21 +124,30 @@ const MyReviewContainer = ({ loading, error, data, deleteReview, refetch }) => {
       )}
       ListFooterComponent={ItemSeparator}
       initialNumToRender={6}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
     />
   );
 };
 
 const MyReview = () => {
-  const { loading, error, data, refetch } = useCurrentUser(true);
+  const first = 5;
+  const withReviews = true;
+  const variables = {
+    withReviews,
+    first,
+  };
+  const { loading, error, me, refetch, fetchMore } = useCurrentUser(variables);
   const [deleteReview] = useDeleteReview();
 
   return (
     <MyReviewContainer
       loading={loading}
       error={error}
-      data={data}
+      me={me}
       deleteReview={deleteReview}
       refetch={refetch}
+      fetchMore={fetchMore}
     />
   );
 };

@@ -92,7 +92,7 @@ const Repository = () => {
     : [];
 
   const onEndReached = () => {
-    console.log("end reached!");
+    // console.log("end reached!");
     fetchMore();
   };
 

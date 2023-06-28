@@ -14,7 +14,13 @@ const cache = new InMemoryCache({
         repositories: relayStylePagination(),
       },
     },
+    // specify the type
     Repository: {
+      fields: {
+        reviews: relayStylePagination(),
+      },
+    },
+    User: {
       fields: {
         reviews: relayStylePagination(),
       },

@@ -16,17 +16,16 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const { loading, error, data } = useCurrentUser();
+  const { loading, error, me } = useCurrentUser();
 
   if (loading) return null;
   if (error) return <Text>{error.message}</Text>;
-  const user = data.me;
 
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
         <AppBarTab tabName="Repositories" path="Repositories" />
-        {user ? (
+        {me ? (
           <>
             <AppBarTab tabName="Create a review" path="Reviews" />
             <AppBarTab tabName="My reviews" path="Reviews/me" />

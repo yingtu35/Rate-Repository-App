@@ -26,7 +26,6 @@ export const GET_REPOSITORIES = gql`
         ...pageInfoDetails
       }
       edges {
-        cursor
         node {
           ...repositoryDetails
         }
@@ -46,7 +45,6 @@ export const GET_REPOSITORY = gql`
           ...pageInfoDetails
         }
         edges {
-          cursor
           node {
             ...reviewDetails
           }
@@ -60,10 +58,13 @@ export const GET_REPOSITORY = gql`
 `;
 
 export const GET_USER = gql`
-  query getUser($withReviews: Boolean = false) {
+  query getUser($withReviews: Boolean = false, $first: Int, $after: String) {
     me {
       ...userDetails
-      reviews @include(if: $withReviews) {
+      reviews(first: $first, after: $after) @include(if: $withReviews) {
+        pageInfo {
+          ...pageInfoDetails
+        }
         edges {
           node {
             ...reviewDetails
@@ -74,4 +75,5 @@ export const GET_USER = gql`
   }
   ${USER_DETAILS}
   ${REVIEW_DETAILS}
+  ${PAGE_INFO_DETAILS}
 `;
