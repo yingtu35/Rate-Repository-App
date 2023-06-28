@@ -8,18 +8,18 @@ import {
 
 export const GET_REPOSITORIES = gql`
   query getRepositories(
-    $orderDirection: OrderDirection
     $orderBy: AllRepositoriesOrderBy
-    $searchKeyword: String
+    $orderDirection: OrderDirection
     $first: Int
     $after: String
+    $searchKeyword: String
   ) {
     repositories(
-      orderDirection: $orderDirection
       orderBy: $orderBy
-      searchKeyword: $searchKeyword
+      orderDirection: $orderDirection
       first: $first
       after: $after
+      searchKeyword: $searchKeyword
     ) {
       totalCount
       pageInfo {
