@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
 });
 
 const Main = () => {
+  // TODO: Put AppBar to the bottom
+  // TODO: Add a loading page to display when something is loading
+  // TODO: Add tests to ensure views are correctly displayed
+  // TODO: Learn more about that react-native-paper provides
   return (
     <View style={styles.container}>
       <AppBar />

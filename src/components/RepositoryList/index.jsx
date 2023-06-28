@@ -5,15 +5,15 @@ import { useDebounce } from "use-debounce";
 import { useNavigate } from "react-router-native";
 
 const orderMapping = {
-  0: {
+  latest: {
     orderBy: "CREATED_AT",
     orderDirection: "DESC",
   },
-  1: {
+  highestRate: {
     orderBy: "RATING_AVERAGE",
     orderDirection: "DESC",
   },
-  2: {
+  lowestRate: {
     orderBy: "RATING_AVERAGE",
     orderDirection: "ASC",
   },
@@ -21,14 +21,13 @@ const orderMapping = {
 
 const RepositoryList = () => {
   const navigate = useNavigate();
-  const [orderMethod, setOrderMethod] = useState(0);
+  const [orderMethod, setOrderMethod] = useState("latest");
   const [searchKeyword, setSearchKeyword] = useState("");
-  const [debounceSearch] = useDebounce(searchKeyword, 1000);
+  const [debounceSearch] = useDebounce(searchKeyword, 500);
   const first = 5;
 
-  const order = orderMapping[orderMethod];
   const variables = {
-    ...order,
+    ...orderMapping[orderMethod],
     searchKeyword: debounceSearch,
     first,
   };

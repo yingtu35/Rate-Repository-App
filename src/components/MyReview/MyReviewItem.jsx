@@ -27,15 +27,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyReviewItem = ({ review, navigate, onDelete }) => {
+const MyReviewItem = ({ review, onViewRepository, onDelete }) => {
   return (
     <View style={styles.container}>
       <ReviewItem review={review} title={review.repositoryId} />
       <View style={styles.buttonGroup}>
         <Pressable
-          onPress={() => {
-            navigate(`/Repository/${review.repositoryId}`);
-          }}
+          onPress={() => onViewRepository(review.repositoryId)}
           style={[styles.button, styles.viewButton]}
         >
           <Text color="white">View repository</Text>

@@ -1,6 +1,5 @@
-import { FlatList, View, Alert } from "react-native";
+import { FlatList, View } from "react-native";
 import ItemSeparator from "../ItemSeparator";
-import { useNavigate } from "react-router-native";
 import Text from "../Text";
 import MyReviewItem from "./MyReviewItem";
 
@@ -8,9 +7,9 @@ const MyReviewContainer = ({
   loading,
   error,
   me,
-  deleteReview,
-  refetch,
-  fetchMore,
+  onViewRepository,
+  onDelete,
+  onEndReached,
 }) => {
   if (loading) {
     return (
@@ -26,36 +25,6 @@ const MyReviewContainer = ({
       </View>
     );
   }
-  const navigate = useNavigate();
-  const handleDelete = (id) => {
-    Alert.alert(
-      "Delete review",
-      "Are you sure you want to delete this review?",
-      [
-        // The "Yes" button
-        {
-          text: "Yes",
-          onPress: async () => {
-            try {
-              await deleteReview(id);
-              refetch({ withReviews: true });
-            } catch (error) {
-              console.log(error.message);
-            }
-          },
-        },
-        // The "No" button
-        {
-          text: "No",
-        },
-      ]
-    );
-  };
-
-  const onEndReached = () => {
-    // console.log("the end has reached");
-    fetchMore();
-  };
 
   const reviewNodes = me ? me.reviews.edges.map((edge) => edge.node) : [];
 
@@ -67,8 +36,8 @@ const MyReviewContainer = ({
       renderItem={({ item }) => (
         <MyReviewItem
           review={item}
-          navigate={navigate}
-          onDelete={handleDelete}
+          onViewRepository={onViewRepository}
+          onDelete={onDelete}
         />
       )}
       ListFooterComponent={ItemSeparator}

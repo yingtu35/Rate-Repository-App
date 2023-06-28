@@ -50,6 +50,8 @@ const RepositoryInfo = ({ repository }) => {
       ]
     );
   };
+  // TODO: Add a button that can toggle the reviewForm (check Togglable?)
+  // TODO: Either create a new reviewForm or use the createReviewForm with first two inputs filled
   return (
     <View style={styles.container}>
       <RepositoryItem repo={repository} />
@@ -95,6 +97,7 @@ const Repository = () => {
     // console.log("end reached!");
     fetchMore();
   };
+  // TODO: Add a create a review function
 
   return (
     <FlatList
