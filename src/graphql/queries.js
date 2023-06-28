@@ -51,10 +51,18 @@ export const GET_REPOSITORY = gql`
 `;
 
 export const GET_USER = gql`
-  query getUser {
+  query getUser($withReviews: Boolean = false) {
     me {
       ...userDetails
+      reviews @include(if: $withReviews) {
+        edges {
+          node {
+            ...reviewDetails
+          }
+        }
+      }
     }
   }
   ${USER_DETAILS}
+  ${REVIEW_DETAILS}
 `;

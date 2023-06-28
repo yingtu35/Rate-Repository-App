@@ -1,7 +1,7 @@
 import { View, Pressable, StyleSheet, Alert, FlatList } from "react-native";
-import { format } from "date-fns";
 import Text from "./Text";
 import ItemSeparator from "./ItemSeparator";
+import ReviewItem from "./ReviewItem";
 import { useParams } from "react-router-native";
 import useRepository from "../hooks/useRepository";
 import RepositoryItem from "./RepositoryList/RepositoryItem";
@@ -12,27 +12,7 @@ import * as Linking from "expo-linking";
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.white,
-  },
-  reviewInfo: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    // alignItems: "stretch",
-  },
-  rating: {
-    margin: 10,
-    height: 40,
-    width: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    borderColor: theme.colors.primary,
-    borderWidth: 2,
-    borderRadius: 20,
-  },
-  reviewDetails: {
     padding: 10,
-    gap: 5,
-    flexShrink: 1,
   },
   GitHubButton: {
     height: 50,
@@ -84,32 +64,6 @@ const RepositoryInfo = ({ repository }) => {
   );
 };
 
-const ReviewItem = ({ review }) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.reviewInfo}>
-        {/* <CircularProgress
-          value={review.rating}
-          inActiveStrokeColor="#a1e6ff"
-          inActiveStrokeOpacity={0.2}
-        /> */}
-        <View style={styles.rating}>
-          <Text color="primary" fontWeight="bold">
-            {review.rating}
-          </Text>
-        </View>
-        <View style={styles.reviewDetails}>
-          <Text fontWeight="bold">{review.user.username}</Text>
-          <Text color="textSecondary">
-            {format(new Date(review.createdAt), "MM/dd/yyyy")}
-          </Text>
-          <Text>{review.text}</Text>
-        </View>
-      </View>
-    </View>
-  );
-};
-
 const Repository = () => {
   const { repositoryId } = useParams();
   const { loading, error, data } = useRepository(repositoryId);
@@ -142,7 +96,9 @@ const Repository = () => {
         </>
       }
       data={reviewsNode}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => (
+        <ReviewItem review={item} title={item.user.username} />
+      )}
       keyExtractor={(item) => item.id}
       ItemSeparatorComponent={ItemSeparator}
       ListFooterComponent={ItemSeparator}

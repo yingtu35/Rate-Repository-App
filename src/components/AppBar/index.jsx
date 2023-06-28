@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  // TODO: need a "me" query to access current user information
   const { loading, error, data } = useQuery(GET_USER);
 
   if (loading) return null;
@@ -32,6 +31,7 @@ const AppBar = () => {
         {user ? (
           <>
             <AppBarTab tabName="Create a review" path="Reviews" />
+            <AppBarTab tabName="My reviews" path="Reviews/me" />
             <SignOut />
           </>
         ) : (
