@@ -2,6 +2,7 @@ import { View, StyleSheet } from "react-native";
 import Text from "./Text";
 import theme from "../theme";
 import { format } from "date-fns";
+// import CircularProgress from "react-native-circular-progress-indicator";
 
 const styles = StyleSheet.create({
   container: {

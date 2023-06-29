@@ -1,8 +1,9 @@
-import { Alert } from "react-native";
+// import { Alert } from "react-native";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import useDeleteReview from "../../hooks/useDeleteReview";
 import MyReviewContainer from "./MyReviewContainer";
 import { useNavigate } from "react-router-native";
+import { alert } from "../../utils/alert";
 
 const MyReview = () => {
   const navigate = useNavigate();
@@ -20,28 +21,22 @@ const MyReview = () => {
     fetchMore();
   };
 
+  const onDeletePressed = async (id) => {
+    try {
+      await deleteReview(id);
+      refetch({ withReviews: true });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const onDelete = (id) => {
-    Alert.alert(
+    alert(
       "Delete review",
       "Are you sure you want to delete this review?",
-      [
-        // The "Yes" button
-        {
-          text: "Yes",
-          onPress: async () => {
-            try {
-              await deleteReview(id);
-              refetch({ withReviews: true });
-            } catch (error) {
-              console.log(error.message);
-            }
-          },
-        },
-        // The "No" button
-        {
-          text: "No",
-        },
-      ]
+      "Yes",
+      "No",
+      () => onDeletePressed(id)
     );
   };
 
