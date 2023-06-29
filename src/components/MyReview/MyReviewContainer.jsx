@@ -40,7 +40,7 @@ const MyReviewContainer = ({
           onDelete={onDelete}
         />
       )}
-      ListFooterComponent={ItemSeparator}
+      // ListFooterComponent={ItemSeparator}
       initialNumToRender={6}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.5}

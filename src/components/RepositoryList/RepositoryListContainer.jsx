@@ -44,7 +44,7 @@ export default class RepositoryListContainer extends React.Component {
             <RepositoryItem repo={item} />
           </Pressable>
         )}
-        ListFooterComponent={ItemSeparator}
+        // ListFooterComponent={ItemSeparator}
         initialNumToRender={6}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.5}

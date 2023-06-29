@@ -29,7 +29,7 @@ const Main = () => {
     </View>;
   }
   if (error) return <Text>{error.message}</Text>;
-
+  // TODO: Solve AppBar would block the bottom most content
   // TODO: Add a loading page to display when something is loading
   // TODO: Add tests to ensure views are correctly displayed
   // TODO: Learn more about that react-native-paper provides
