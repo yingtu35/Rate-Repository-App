@@ -11,10 +11,11 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: theme.colors.primary,
-    alignItems: "center",
     margin: 5,
-    padding: 10,
+    height: 50,
     borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

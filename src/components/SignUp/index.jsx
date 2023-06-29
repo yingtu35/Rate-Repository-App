@@ -19,7 +19,6 @@ const SignUp = () => {
       // console.log(data);
       navigate("/");
     } catch (error) {
-      // TODO: display error message to the view
       console.log(error.message);
       actions.setFieldError("username", error.message);
     }
