@@ -6,7 +6,7 @@ const CreateReview = () => {
   const navigate = useNavigate();
   const [createReview] = useCreateReview();
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, actions) => {
     const { ownerName, repositoryName, rating, text } = values;
     const review = {
       ownerName,
@@ -19,8 +19,19 @@ const CreateReview = () => {
       console.log(data);
       navigate(`/Repository/${data.createReview.repositoryId}`);
     } catch (error) {
-      // TODO: display error message to the view
-      console.log(error);
+      const message = error.message;
+      if (message.startsWith("User")) {
+        actions.setFieldError(
+          "text",
+          "You have already reviewed this repository"
+        );
+      } else {
+        actions.setErrors({
+          ownerName: error.message,
+          repositoryName: error.message,
+        });
+      }
+      // console.log(error);
     }
   };
 
