@@ -2,11 +2,11 @@
 import useCurrentUser from "../../hooks/useCurrentUser";
 import useDeleteReview from "../../hooks/useDeleteReview";
 import MyReviewContainer from "./MyReviewContainer";
-import { useNavigate } from "react-router-native";
-import { alert } from "../../utils/alert";
+// import { useNavigate } from "react-router-native";
+import { confirmAction } from "../../utils/alert";
 
-const MyReview = () => {
-  const navigate = useNavigate();
+const MyReview = ({ navigation }) => {
+  // const navigate = useNavigate();
   const first = 5;
   const withReviews = true;
   const variables = {
@@ -31,7 +31,7 @@ const MyReview = () => {
   };
 
   const onDelete = (id) => {
-    alert(
+    confirmAction(
       "Delete review",
       "Are you sure you want to delete this review?",
       "Yes",
@@ -41,7 +41,11 @@ const MyReview = () => {
   };
 
   const onViewRepository = (id) => {
-    navigate(`/Repository/${id}`);
+    navigation.navigate("Repositories", {
+      screen: "Repository",
+      params: { id },
+    });
+    // navigate(`/Repository/${id}`);
   };
 
   return (

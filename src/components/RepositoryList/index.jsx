@@ -2,7 +2,7 @@ import { useState } from "react";
 import useRepositories from "../../hooks/useRepositories";
 import RepositoryListContainer from "./RepositoryListContainer";
 import { useDebounce } from "use-debounce";
-import { useNavigate } from "react-router-native";
+// import { useNavigate } from "react-router-native";
 
 const orderMapping = {
   latest: {
@@ -19,8 +19,8 @@ const orderMapping = {
   },
 };
 
-const RepositoryList = () => {
-  const navigate = useNavigate();
+const RepositoryList = ({ navigation }) => {
+  // const navigate = useNavigate();
   const [orderMethod, setOrderMethod] = useState("latest");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [debounceSearch] = useDebounce(searchKeyword, 500);
@@ -40,7 +40,8 @@ const RepositoryList = () => {
   };
 
   const onRepositoryPress = (id) => {
-    navigate(`/repository/${id}`);
+    navigation.navigate("Repository", { id });
+    // navigate(`/repository/${id}`);
   };
 
   return (

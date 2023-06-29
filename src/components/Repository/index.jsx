@@ -1,10 +1,12 @@
-import { useParams } from "react-router-native";
+// import { useParams } from "react-router-native";
 import useCreateReview from "../../hooks/useCreateReview";
 import useRepository from "../../hooks/useRepository";
 import RepositoryContainer from "./RepositoryContainer";
 
-const Repository = () => {
-  const { repositoryId } = useParams();
+const Repository = ({ route }) => {
+  // console.log(route);
+  const repositoryId = route?.params?.id ? route.params.id : null;
+  // const { repositoryId } = useParams();
   const first = 5;
   const variables = {
     repositoryId,

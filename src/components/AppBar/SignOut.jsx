@@ -1,7 +1,7 @@
 import { View, StyleSheet, Pressable } from "react-native";
 import Text from "../Text";
 import useSignOut from "../../hooks/useSignOut";
-import { useNavigate } from "react-router-native";
+// import { useNavigate } from "react-router-native";
 import { alert } from "../../utils/alert";
 
 const styles = StyleSheet.create({
@@ -15,11 +15,11 @@ const styles = StyleSheet.create({
 
 const SignOut = () => {
   const [signOut] = useSignOut();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onSignOutPressed = async () => {
-    await signOut();
-    navigate("/SignIn");
+    // await signOut();
+    // navigate("/SignIn");
   };
 
   const onSignOut = () => {

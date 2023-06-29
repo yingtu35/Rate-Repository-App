@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-native";
+// import { useNavigate } from "react-router-native";
 import useCreateReview from "../../hooks/useCreateReview";
 import CreateReviewContainer from "./CreateReviewContainer";
 
-const CreateReview = () => {
-  const navigate = useNavigate();
+const CreateReview = ({ navigation }) => {
+  // const navigate = useNavigate();
   const [createReview] = useCreateReview();
 
   const onSubmit = async (values, actions) => {
@@ -17,7 +17,8 @@ const CreateReview = () => {
     try {
       const { data } = await createReview(review);
       console.log(data);
-      navigate(`/Repository/${data.createReview.repositoryId}`);
+      navigation.navigate("Repositories");
+      // navigate(`/Repository/${data.createReview.repositoryId}`);
     } catch (error) {
       const message = error.message;
       if (message.startsWith("User")) {

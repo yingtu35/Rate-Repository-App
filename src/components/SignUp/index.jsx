@@ -1,10 +1,10 @@
 // Formik x React Native example
-import { useNavigate } from "react-router-native";
+// import { useNavigate } from "react-router-native";
 import SignUpContainer from "./SignUpContainer";
 import useSignUp from "../../hooks/useSignUp";
 
-const SignUp = () => {
-  const navigate = useNavigate();
+const SignUp = ({ navigation }) => {
+  // const navigate = useNavigate();
   const [signUp] = useSignUp();
 
   const onSubmit = async (values, actions) => {
@@ -15,9 +15,10 @@ const SignUp = () => {
       password,
     };
     try {
+      // navigation.navigate("Repositories");
       await signUp(user);
       // console.log(data);
-      navigate("/");
+      // navigate("/");
     } catch (error) {
       console.log(error.message);
       actions.setFieldError("username", error.message);
