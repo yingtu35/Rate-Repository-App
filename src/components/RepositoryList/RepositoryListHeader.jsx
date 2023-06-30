@@ -27,6 +27,7 @@ const RepositoryListHeader = ({
   searchKeyword,
   setSearchKeyword,
 }) => {
+  // TODO: Change search bar and picker with components from react native paper
   return (
     <View>
       <TextInput
