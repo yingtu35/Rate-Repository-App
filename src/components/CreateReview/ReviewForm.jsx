@@ -33,7 +33,9 @@ const ReviewForm = ({ onSubmit, nameEditable }) => {
       <FormikTextInput name="rating" placeholder="Rating between 0 and 100" />
       <FormikTextInput name="text" placeholder="Review" multiline />
       <Pressable onPress={onSubmit} style={styles.button}>
-        <Text color="white">Create a Review</Text>
+        <Text color="white" fontWeight="bold">
+          Create a Review
+        </Text>
       </Pressable>
     </View>
   );

@@ -3,7 +3,7 @@
 import useSignIn from "../../hooks/useSignIn";
 import SignInContainer from "./SignInContainer";
 
-const SignIn = ({ navigation }) => {
+const SignIn = () => {
   // const navigate = useNavigate();
   const [signIn] = useSignIn();
 
@@ -15,7 +15,6 @@ const SignIn = ({ navigation }) => {
       // console.log(data)
       // navigate("/");
     } catch (error) {
-      // TODO: display error message to the view
       console.log(error);
       actions.setErrors({ username: error.message, password: error.message });
     }

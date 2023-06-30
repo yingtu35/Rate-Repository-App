@@ -1,10 +1,11 @@
-import { View, Pressable, StyleSheet, Alert } from "react-native";
+import { View, Pressable, StyleSheet } from "react-native";
 import * as Linking from "expo-linking";
 import CreateReviewContainer from "../CreateReview/CreateReviewContainer";
 import RepositoryItem from "../RepositoryList/RepositoryItem";
 import Togglable from "../Togglable";
 import Text from "../Text";
 import theme from "../../theme";
+import { confirmAction } from "../../utils/alert";
 
 const styles = StyleSheet.create({
   container: {
@@ -30,24 +31,18 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryInfo = ({ repository, onSubmit }) => {
+  const onOpenUrl = async () => {
+    console.log(`Open url: ${repository.url}`);
+    Linking.openURL(`${repository.url}`);
+  };
+
   const handleOpenUrl = () => {
-    Alert.alert(
+    confirmAction(
       "Open in GitHub",
       "You will be redirected to a GitHub page, click Yes to continue",
-      [
-        // The "Yes" button
-        {
-          text: "Yes",
-          onPress: async () => {
-            console.log(`Open url: ${repository.url}`);
-            Linking.openURL(`${repository.url}`);
-          },
-        },
-        // The "No" button
-        {
-          text: "No",
-        },
-      ]
+      "Yes",
+      "No",
+      onOpenUrl
     );
   };
   return (

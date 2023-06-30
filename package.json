@@ -34,7 +34,8 @@
     "react-native-web": "~0.18.10",
     "react-router-native": "^6.13.0",
     "use-debounce": "^9.0.4",
-    "yup": "^1.2.0"
+    "yup": "^1.2.0",
+    "undefined": "@expo/vector-icons/Ionicons"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

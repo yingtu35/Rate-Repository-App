@@ -36,13 +36,17 @@ const MyReviewItem = ({ review, onViewRepository, onDelete }) => {
           onPress={() => onViewRepository(review.repositoryId)}
           style={[styles.button, styles.viewButton]}
         >
-          <Text color="white">View repository</Text>
+          <Text color="white" fontWeight="bold">
+            View repository
+          </Text>
         </Pressable>
         <Pressable
           onPress={() => onDelete(review.id)}
           style={[styles.button, styles.deleteButton]}
         >
-          <Text color="white">Delete Review</Text>
+          <Text color="white" fontWeight="bold">
+            Delete Review
+          </Text>
         </Pressable>
       </View>
     </View>

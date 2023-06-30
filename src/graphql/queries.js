@@ -61,6 +61,8 @@ export const GET_USER = gql`
   query getUser($withReviews: Boolean = false, $first: Int, $after: String) {
     me {
       ...userDetails
+      createdAt
+      reviewCount
       reviews(first: $first, after: $after) @include(if: $withReviews) {
         pageInfo {
           ...pageInfoDetails

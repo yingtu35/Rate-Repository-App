@@ -43,7 +43,9 @@ const Togglable = (props) => {
         }
         onPress={toggleVisibility}
       >
-        <Text color="white">{props.buttonLabel}</Text>
+        <Text color="white" fontWeight="bold">
+          {props.buttonLabel}
+        </Text>
       </Pressable>
       <View style={visible ? styles.show : styles.hide}>
         {props.children}
@@ -51,7 +53,9 @@ const Togglable = (props) => {
           onPress={toggleVisibility}
           style={[styles.button, styles.closeButtonColor]}
         >
-          <Text color="white">Cancel</Text>
+          <Text color="white" fontWeight="bold">
+            Cancel
+          </Text>
         </Pressable>
       </View>
     </View>

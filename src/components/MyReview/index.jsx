@@ -41,10 +41,11 @@ const MyReview = ({ navigation }) => {
   };
 
   const onViewRepository = (id) => {
-    navigation.navigate("Repositories", {
-      screen: "Repository",
-      params: { id },
-    });
+    // navigation.navigate("Repositories", {
+    //   screen: "Repository",
+    //   params: { id },
+    // });
+    navigation.navigate("Repository", { id });
     // navigate(`/Repository/${id}`);
   };
 

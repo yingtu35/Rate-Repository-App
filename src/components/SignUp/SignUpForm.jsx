@@ -28,7 +28,9 @@ const SignUpForm = ({ onSubmit }) => {
         secureTextEntry
       />
       <Pressable onPress={onSubmit} style={styles.button}>
-        <Text color="white">Sign up</Text>
+        <Text color="white" fontWeight="bold">
+          Sign up
+        </Text>
       </Pressable>
     </View>
   );
