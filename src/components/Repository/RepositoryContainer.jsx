@@ -1,4 +1,4 @@
-import { View, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import ItemSeparator from "../ItemSeparator";
 import ReviewItem from "../ReviewItem";
 import Loader from "../Loader";
@@ -12,19 +12,8 @@ const RepositoryContainer = ({
   onSubmit,
   onEndReached,
 }) => {
-  if (loading)
-    return (
-      <View>
-        <Loader />
-      </View>
-    );
-  if (error) {
-    return (
-      <View>
-        <Text>{error.message}</Text>
-      </View>
-    );
-  }
+  if (loading) return <Loader />;
+  if (error) return <Text>{error.message}</Text>;
 
   const reviewsNode = repository
     ? repository.reviews.edges.map((edge) => edge.node)

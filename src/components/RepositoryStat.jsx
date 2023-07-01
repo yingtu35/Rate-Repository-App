@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import Text from "../Text";
-import { convertNumber } from "../../utils/convertNumber";
+import Text from "./Text";
+import { convertNumber } from "../utils/convertNumber";
 
 const RepositoryStat = ({ statNumber, statName }) => {
   statNumber = convertNumber(statNumber);

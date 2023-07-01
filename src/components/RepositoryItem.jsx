@@ -1,7 +1,7 @@
 import { View, StyleSheet, Image } from "react-native";
 import RepositoryStat from "./RepositoryStat";
-import theme from "../../theme";
-import Text from "../Text";
+import theme from "../theme";
+import Text from "./Text";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
-    // alignItems: "stretch",
   },
   avatar: {
     width: 40,

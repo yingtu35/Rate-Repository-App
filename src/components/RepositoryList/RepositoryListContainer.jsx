@@ -1,10 +1,9 @@
 import React from "react";
 import { Pressable, FlatList, View } from "react-native";
-import RepositoryItem from "./RepositoryItem";
+import RepositoryItem from "../RepositoryItem";
 import Text from "../Text";
 import ItemSeparator from "../ItemSeparator";
 import RepositoryListHeader from "./RepositoryListHeader";
-// import Loader from "../Loader";
 
 export default class RepositoryListContainer extends React.Component {
   renderHeader = () => {
@@ -12,8 +11,7 @@ export default class RepositoryListContainer extends React.Component {
   };
 
   render() {
-    const { loading, error, repositories, onEndReached, onRepositoryPress } =
-      this.props;
+    const { error, repositories, onEndReached, onRepositoryPress } = this.props;
 
     // if (loading) return <Loader />;
     if (error) {
@@ -46,7 +44,6 @@ export default class RepositoryListContainer extends React.Component {
         onEndReachedThreshold={0.5}
         // other props
       />
-      // <Loader />
     );
   }
 }

@@ -1,7 +1,7 @@
 import { View, Pressable, StyleSheet } from "react-native";
 import * as Linking from "expo-linking";
-import CreateReviewContainer from "../CreateReview/CreateReviewContainer";
-import RepositoryItem from "../RepositoryList/RepositoryItem";
+import CreateReview from "./CreateReview";
+import RepositoryItem from "../RepositoryItem";
 import Togglable from "../Togglable";
 import Text from "../Text";
 import theme from "../../theme";
@@ -59,7 +59,7 @@ const RepositoryInfo = ({ repository, onSubmit }) => {
         buttonLabel="Review this repository"
         buttonStyle={styles.ButtonBase}
       >
-        <CreateReviewContainer onSubmit={onSubmit} name={repository.fullName} />
+        <CreateReview onSubmit={onSubmit} name={repository.fullName} />
       </Togglable>
     </View>
   );

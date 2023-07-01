@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import * as yup from "yup";
-import ReviewForm from "./ReviewForm";
+import CreateReviewForm from "./CreateReviewForm";
 
 const createReviewSchema = yup.object().shape({
   ownerName: yup.string().required("Repository owner name is required"),
@@ -17,7 +17,7 @@ const createReviewSchema = yup.object().shape({
     .optional(),
 });
 
-const CreateReviewContainer = ({ onSubmit, name = null }) => {
+const CreateReview = ({ onSubmit, name = null }) => {
   // const nameEditable = name ? false : true;
   const initialValues = {
     ownerName: name ? name.split("/")[0] : "",
@@ -32,9 +32,9 @@ const CreateReviewContainer = ({ onSubmit, name = null }) => {
       onSubmit={onSubmit}
       validationSchema={createReviewSchema}
     >
-      {({ handleSubmit }) => <ReviewForm onSubmit={handleSubmit} />}
+      {({ handleSubmit }) => <CreateReviewForm onSubmit={handleSubmit} />}
     </Formik>
   );
 };
 
-export default CreateReviewContainer;
+export default CreateReview;

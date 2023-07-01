@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-const ReviewForm = ({ onSubmit }) => {
+const CreateReviewForm = ({ onSubmit }) => {
   return (
     <View style={styles.container}>
       {/* <FormikTextInput
@@ -42,4 +42,4 @@ const ReviewForm = ({ onSubmit }) => {
   );
 };
 
-export default ReviewForm;
+export default CreateReviewForm;

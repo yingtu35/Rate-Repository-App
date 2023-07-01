@@ -1,12 +1,9 @@
-// import { Alert } from "react-native";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import useDeleteReview from "../../hooks/useDeleteReview";
 import MyReviewContainer from "./MyReviewContainer";
-// import { useNavigate } from "react-router-native";
 import { confirmAction } from "../../utils/alert";
 
 const MyReview = ({ navigation }) => {
-  // const navigate = useNavigate();
   const first = 5;
   const withReviews = true;
   const variables = {
@@ -41,12 +38,7 @@ const MyReview = ({ navigation }) => {
   };
 
   const onViewRepository = (id) => {
-    // navigation.navigate("Repositories", {
-    //   screen: "Repository",
-    //   params: { id },
-    // });
     navigation.navigate("Repository", { id });
-    // navigate(`/Repository/${id}`);
   };
 
   return (
