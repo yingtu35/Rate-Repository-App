@@ -18,7 +18,7 @@ const createReviewSchema = yup.object().shape({
 });
 
 const CreateReviewContainer = ({ onSubmit, name = null }) => {
-  const nameEditable = name ? false : true;
+  // const nameEditable = name ? false : true;
   const initialValues = {
     ownerName: name ? name.split("/")[0] : "",
     repositoryName: name ? name.split("/")[1] : "",
@@ -32,9 +32,7 @@ const CreateReviewContainer = ({ onSubmit, name = null }) => {
       onSubmit={onSubmit}
       validationSchema={createReviewSchema}
     >
-      {({ handleSubmit }) => (
-        <ReviewForm onSubmit={handleSubmit} nameEditable={nameEditable} />
-      )}
+      {({ handleSubmit }) => <ReviewForm onSubmit={handleSubmit} />}
     </Formik>
   );
 };

@@ -4,7 +4,10 @@ import theme from "../../theme";
 // import { useRef } from "react";
 
 const styles = StyleSheet.create({
-  picker: { backgroundColor: theme.colors.white, marginBottom: 5 },
+  picker: {
+    backgroundColor: theme.colors.white,
+    marginBottom: 5,
+  },
 });
 
 const Picker = ({ orderMethod, setOrderMethod, options = [], style }) => {
@@ -24,7 +27,7 @@ const Picker = ({ orderMethod, setOrderMethod, options = [], style }) => {
       onValueChange={(itemValue) => setOrderMethod(itemValue)}
     >
       {options.map(({ value, label }) => (
-        <NativePicker key={value} label={label} value={value} />
+        <NativePicker.Item key={value} label={label} value={value} />
       ))}
     </NativePicker>
   );

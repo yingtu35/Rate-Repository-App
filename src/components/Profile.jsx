@@ -1,5 +1,6 @@
 import { Pressable, View, StyleSheet, Image } from "react-native";
 import Text from "./Text";
+import Loader from "./Loader";
 import useSignOut from "../hooks/useSignOut";
 import { confirmAction } from "../utils/alert";
 import theme from "../theme";
@@ -51,11 +52,7 @@ const styles = StyleSheet.create({
 const Profile = () => {
   const { loading, error, me } = useCurrentUser();
   const [signOut] = useSignOut();
-  if (loading) {
-    <View>
-      <Text>Loading...</Text>
-    </View>;
-  }
+  if (loading) return <Loader />;
   if (error) return <Text>{error.message}</Text>;
 
   const onSignOutPressed = async () => {

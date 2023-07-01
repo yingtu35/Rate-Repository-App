@@ -1,6 +1,7 @@
 import { View, FlatList } from "react-native";
 import ItemSeparator from "../ItemSeparator";
 import ReviewItem from "../ReviewItem";
+import Loader from "../Loader";
 import Text from "../Text";
 import RepositoryInfo from "./RepositoryInfo";
 
@@ -14,7 +15,7 @@ const RepositoryContainer = ({
   if (loading)
     return (
       <View>
-        <Text>Loading...</Text>
+        <Loader />
       </View>
     );
   if (error) {

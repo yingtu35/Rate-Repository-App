@@ -10,17 +10,18 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: theme.colors.primary,
-    margin: 5,
+    marginHorizontal: 5,
+    marginTop: 5,
     height: 50,
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
   },
 });
-const ReviewForm = ({ onSubmit, nameEditable }) => {
+const ReviewForm = ({ onSubmit }) => {
   return (
     <View style={styles.container}>
-      <FormikTextInput
+      {/* <FormikTextInput
         name="ownerName"
         placeholder="Repository owner name"
         editable={nameEditable}
@@ -29,7 +30,7 @@ const ReviewForm = ({ onSubmit, nameEditable }) => {
         name="repositoryName"
         placeholder="Repository name"
         editable={nameEditable}
-      />
+      /> */}
       <FormikTextInput name="rating" placeholder="Rating between 0 and 100" />
       <FormikTextInput name="text" placeholder="Review" multiline />
       <Pressable onPress={onSubmit} style={styles.button}>

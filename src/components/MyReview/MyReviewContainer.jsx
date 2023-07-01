@@ -1,7 +1,8 @@
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import ItemSeparator from "../ItemSeparator";
 import Text from "../Text";
 import MyReviewItem from "./MyReviewItem";
+import Loader from "../Loader";
 
 const MyReviewContainer = ({
   loading,
@@ -11,20 +12,8 @@ const MyReviewContainer = ({
   onDelete,
   onEndReached,
 }) => {
-  if (loading) {
-    return (
-      <View>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
-  if (error) {
-    return (
-      <View>
-        <Text>{error.message}</Text>
-      </View>
-    );
-  }
+  if (loading) return <Loader />;
+  if (error) return <Text>{error.message}</Text>;
 
   const reviewNodes = me ? me.reviews.edges.map((edge) => edge.node) : [];
 

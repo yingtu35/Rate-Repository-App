@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View } from "react-native";
 import Text from "./Text";
 import useCurrentUser from "../hooks/useCurrentUser";
 import RepositoryList from "./RepositoryList";
@@ -10,6 +9,7 @@ import SignUp from "./SignUp";
 import Repository from "./Repository";
 import MyReview from "./MyReview";
 import Profile from "./Profile";
+import Loader from "./Loader";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
@@ -20,9 +20,9 @@ const MyReviewTabs = () => {
   return (
     <MyReviewStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
       <MyReviewStack.Screen
-        name="MyReview"
+        name="MyReviewsHome"
         component={MyReview}
-        // options={{ headerShown: false }}
+        options={{ title: "MyReviews" }}
       />
       <MyReviewStack.Screen
         name="Repository"
@@ -38,11 +38,7 @@ const MyReviewTabs = () => {
 const HomeTabs = () => {
   const { loading, error, me } = useCurrentUser();
 
-  if (loading) {
-    <View>
-      <Text>Loading...</Text>
-    </View>;
-  }
+  if (loading) return <Loader />;
   if (error) return <Text>{error.message}</Text>;
   return (
     <Tab.Navigator
@@ -50,7 +46,7 @@ const HomeTabs = () => {
         tabBarIcon: ({ focused, color, size }) => {
           const icons = {
             Repositories: focused ? "md-home" : "md-home-outline",
-            MyReview: focused ? "md-albums" : "md-albums-outline",
+            MyReviews: focused ? "md-albums" : "md-albums-outline",
             Profile: focused ? "ios-person" : "ios-person-outline",
             SignIn: focused ? "ios-log-in" : "ios-log-in-outline",
             SignUp: focused ? "ios-person-add" : "ios-person-add-outline",
@@ -66,7 +62,7 @@ const HomeTabs = () => {
         <>
           <Tab.Screen name="Repositories" component={RepositoryList} />
           <Tab.Screen
-            name="MyReview"
+            name="MyReviews"
             component={MyReviewTabs}
             options={{ headerShown: false }}
           />
