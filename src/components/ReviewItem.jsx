@@ -2,7 +2,7 @@ import { View, StyleSheet } from "react-native";
 import Text from "./Text";
 import theme from "../theme";
 import { format } from "date-fns";
-// import CircularProgress from "react-native-circular-progress-indicator";
+import CircularProgress from "react-native-circular-progress-indicator";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
   },
   rating: {
     margin: 10,
-    height: 40,
-    width: 40,
-    justifyContent: "center",
+    // height: 40,
+    // width: 40,
+    // justifyContent: "center",
     alignItems: "center",
-    borderColor: theme.colors.primary,
-    borderWidth: 2,
-    borderRadius: 20,
+    // borderColor: theme.colors.primary,
+    // borderWidth: 2,
+    // borderRadius: 20,
   },
   reviewDetails: {
     padding: 10,
@@ -36,15 +36,15 @@ const ReviewItem = ({ review, title }) => {
   return (
     <View style={styles.container}>
       <View style={styles.reviewInfo}>
-        {/* <CircularProgress
-          value={review.rating}
-          inActiveStrokeColor="#a1e6ff"
-          inActiveStrokeOpacity={0.2}
-        /> */}
         <View style={styles.rating}>
-          <Text color="primary" fontWeight="bold">
-            {review.rating}
-          </Text>
+          <CircularProgress
+            value={review.rating}
+            radius={25}
+            activeStrokeWidth={5}
+            activeStrokeColor={theme.colors.primary}
+            inActiveStrokeColor={"#a1e6ff"}
+            inActiveStrokeOpacity={0.2}
+          />
         </View>
         <View style={styles.reviewDetails}>
           <Text fontWeight="bold">{title}</Text>
