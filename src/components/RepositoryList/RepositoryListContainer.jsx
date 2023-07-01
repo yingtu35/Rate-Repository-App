@@ -3,6 +3,7 @@ import { Pressable, FlatList, View } from "react-native";
 import RepositoryItem from "../RepositoryItem";
 import Text from "../Text";
 import ItemSeparator from "../ItemSeparator";
+import RepositoryListEmpty from "./RespositryEmpty";
 import RepositoryListHeader from "./RepositoryListHeader";
 
 export default class RepositoryListContainer extends React.Component {
@@ -31,6 +32,7 @@ export default class RepositoryListContainer extends React.Component {
       <FlatList
         data={repositoryNodes}
         ListHeaderComponent={this.renderHeader}
+        ListEmptyComponent={RepositoryListEmpty}
         ItemSeparatorComponent={ItemSeparator}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (

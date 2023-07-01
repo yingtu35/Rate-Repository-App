@@ -41,7 +41,9 @@ const RepositoryItem = ({ repo }) => {
       <View style={styles.repoInfo}>
         <Image style={styles.avatar} source={{ uri: repo.ownerAvatarUrl }} />
         <View style={styles.repoDetails}>
-          <Text fontWeight="bold">{repo.fullName}</Text>
+          <Text fontSize="subheading" fontWeight="bold">
+            {repo.fullName}
+          </Text>
           <Text color="textSecondary" style={{ flexShrink: 1 }}>
             {repo.description}
           </Text>
