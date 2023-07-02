@@ -11,7 +11,6 @@ export const REPOSITORY_DETAILS = gql`
     ownerAvatarUrl
     description
     language
-    url
   }
 `;
 
@@ -37,7 +36,6 @@ export const REVIEW_DETAILS = gql`
     user {
       ...userDetails
     }
-    repositoryId
     rating
     createdAt
     text

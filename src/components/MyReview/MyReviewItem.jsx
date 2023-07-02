@@ -2,6 +2,7 @@ import { Pressable, View, StyleSheet } from "react-native";
 import Text from "../Text";
 import ReviewItem from "../ReviewItem";
 import theme from "../../theme";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   container: {
@@ -54,3 +55,19 @@ const MyReviewItem = ({ review, onViewRepository, onDelete }) => {
 };
 
 export default MyReviewItem;
+
+MyReviewItem.propTypes = {
+  review: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+    }),
+    repositoryId: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    text: PropTypes.string,
+  }),
+  onViewRepository: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};

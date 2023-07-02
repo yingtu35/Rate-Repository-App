@@ -3,6 +3,7 @@ import Text from "./Text";
 import theme from "../theme";
 import { format } from "date-fns";
 import CircularProgress from "react-native-circular-progress-indicator";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,13 +18,7 @@ const styles = StyleSheet.create({
   },
   rating: {
     margin: 10,
-    // height: 40,
-    // width: 40,
-    // justifyContent: "center",
     alignItems: "center",
-    // borderColor: theme.colors.primary,
-    // borderWidth: 2,
-    // borderRadius: 20,
   },
   reviewDetails: {
     padding: 10,
@@ -59,3 +54,16 @@ const ReviewItem = ({ review, title }) => {
 };
 
 export default ReviewItem;
+
+ReviewItem.propTypes = {
+  review: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+    }),
+    rating: PropTypes.number.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    text: PropTypes.string,
+  }),
+};

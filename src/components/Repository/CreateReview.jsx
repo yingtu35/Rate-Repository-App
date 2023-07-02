@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import * as yup from "yup";
 import CreateReviewForm from "./CreateReviewForm";
+import PropTypes from "prop-types";
 
 const createReviewSchema = yup.object().shape({
   ownerName: yup.string().required("Repository owner name is required"),
@@ -38,3 +39,8 @@ const CreateReview = ({ onSubmit, name = null }) => {
 };
 
 export default CreateReview;
+
+CreateReview.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  name: PropTypes.string,
+};

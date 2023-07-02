@@ -6,6 +6,7 @@ import Togglable from "../Togglable";
 import Text from "../Text";
 import theme from "../../theme";
 import { confirmAction } from "../../utils/alert";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   container: {
@@ -66,3 +67,19 @@ const RepositoryInfo = ({ repository, onSubmit }) => {
 };
 
 export default RepositoryInfo;
+
+RepositoryInfo.propTypes = {
+  repository: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired,
+    ratingAverage: PropTypes.number.isRequired,
+    reviewCount: PropTypes.number.isRequired,
+    stargazersCount: PropTypes.number.isRequired,
+    forksCount: PropTypes.number.isRequired,
+    ownerAvatarUrl: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }),
+  onSubmit: PropTypes.func.isRequired,
+};

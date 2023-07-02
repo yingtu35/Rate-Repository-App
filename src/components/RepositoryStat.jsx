@@ -1,6 +1,7 @@
 import { View } from "react-native";
 import Text from "./Text";
 import { convertNumber } from "../utils/convertNumber";
+import PropTypes from "prop-types";
 
 const RepositoryStat = ({ statNumber, statName }) => {
   statNumber = convertNumber(statNumber);
@@ -13,3 +14,8 @@ const RepositoryStat = ({ statNumber, statName }) => {
 };
 
 export default RepositoryStat;
+
+RepositoryStat.propTypes = {
+  statNumber: PropTypes.number.isRequired,
+  statName: PropTypes.string.isRequired,
+};

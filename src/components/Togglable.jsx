@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import Text from "./Text";
 import theme from "../theme";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   show: {
@@ -63,3 +64,7 @@ const Togglable = (props) => {
 };
 
 export default Togglable;
+
+Togglable.propTypes = {
+  buttonLabel: PropTypes.string.isRequired,
+};

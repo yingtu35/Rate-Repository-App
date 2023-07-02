@@ -3,6 +3,7 @@ import TextInput from "./TextInput";
 import Text from "./Text";
 import { StyleSheet } from "react-native";
 import theme from "../theme";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   input: {
@@ -44,3 +45,7 @@ const FormikTextInput = ({ name, ...props }) => {
 };
 
 export default FormikTextInput;
+
+FormikTextInput.propTypes = {
+  name: PropTypes.string.isRequired,
+};

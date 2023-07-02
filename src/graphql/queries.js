@@ -40,6 +40,7 @@ export const GET_REPOSITORY = gql`
   query getRepository($repositoryId: ID!, $first: Int, $after: String) {
     repository(id: $repositoryId) {
       ...repositoryDetails
+      url
       reviews(first: $first, after: $after) {
         pageInfo {
           ...pageInfoDetails
@@ -70,6 +71,7 @@ export const GET_USER = gql`
         edges {
           node {
             ...reviewDetails
+            repositoryId
           }
         }
       }

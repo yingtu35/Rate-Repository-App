@@ -2,14 +2,10 @@ import Picker from "./Picker";
 import theme from "../../theme";
 import { View, StyleSheet } from "react-native";
 import { Searchbar } from "react-native-paper";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   searchInput: {
-    // borderWidth: 1,
-    // padding: 10,
-    // marginBottom: 5,
-    // borderRadius: 5,
-    // height: 50,
     borderRadius: 0,
     backgroundColor: theme.colors.white,
   },
@@ -46,3 +42,10 @@ const RepositoryListHeader = ({
 };
 
 export default RepositoryListHeader;
+
+RepositoryListHeader.propTypes = {
+  orderMethod: PropTypes.string.isRequired,
+  setOrderMethod: PropTypes.func.isRequired,
+  searchKeyword: PropTypes.string.isRequired,
+  setSearchKeyword: PropTypes.func.isRequired,
+};

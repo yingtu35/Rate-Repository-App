@@ -2,6 +2,7 @@ import { View, StyleSheet, Image } from "react-native";
 import RepositoryStat from "./RepositoryStat";
 import theme from "../theme";
 import Text from "./Text";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   container: {
@@ -63,3 +64,17 @@ const RepositoryItem = ({ repo }) => {
 };
 
 export default RepositoryItem;
+
+RepositoryItem.propTypes = {
+  repo: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired,
+    ratingAverage: PropTypes.number.isRequired,
+    reviewCount: PropTypes.number.isRequired,
+    stargazersCount: PropTypes.number.isRequired,
+    forksCount: PropTypes.number.isRequired,
+    ownerAvatarUrl: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
+  }),
+};

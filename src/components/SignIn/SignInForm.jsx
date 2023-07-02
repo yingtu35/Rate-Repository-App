@@ -2,11 +2,11 @@ import { Pressable, View, StyleSheet } from "react-native";
 import FormikTextInput from "../FormikTextInput";
 import theme from "../../theme";
 import Text from "../Text";
+import PropTypes from "prop-types";
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.white,
-    // justifyContent: "center",
-    // alignItems: "center",
     padding: 10,
   },
   button: {
@@ -34,3 +34,7 @@ const SignInForm = ({ onSubmit }) => {
 };
 
 export default SignInForm;
+
+SignInForm.PropTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

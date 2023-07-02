@@ -8,7 +8,16 @@ import RepositoryListHeader from "./RepositoryListHeader";
 
 export default class RepositoryListContainer extends React.Component {
   renderHeader = () => {
-    return <RepositoryListHeader {...this.props} />;
+    const { orderMethod, setOrderMethod, searchKeyword, setSearchKeyword } =
+      this.props;
+    return (
+      <RepositoryListHeader
+        orderMethod={orderMethod}
+        setOrderMethod={setOrderMethod}
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
+    );
   };
 
   render() {
@@ -40,7 +49,6 @@ export default class RepositoryListContainer extends React.Component {
             <RepositoryItem repo={item} />
           </Pressable>
         )}
-        // ListFooterComponent={ItemSeparator}
         initialNumToRender={6}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
