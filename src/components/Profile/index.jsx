@@ -3,7 +3,7 @@ import Text from "../Text";
 import Loader from "../Loader";
 import theme from "../../theme";
 import useCurrentUser from "../../hooks/useCurrentUser";
-import user from "../../assets/user.png";
+import user from "../../../assets/user.png";
 import format from "date-fns/format";
 import SignOut from "./SignOut";
 

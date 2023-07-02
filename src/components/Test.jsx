@@ -5,7 +5,6 @@ import useCurrentUser from "../hooks/useCurrentUser";
 import RepositoryList from "./RepositoryList";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-// import CreateReview from "./CreateReview";
 import Repository from "./Repository";
 import MyReview from "./MyReview";
 import Profile from "./Profile";
