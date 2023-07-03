@@ -1,8 +1,7 @@
-import { View, Pressable, StyleSheet, ActivityIndicator } from "react-native";
+import { View, StyleSheet } from "react-native";
 import theme from "../../theme";
 import FormikTextInput from "../FormikTextInput";
-import Text from "../Text";
-import { useEffect, useState } from "react";
+import SubmitButton from "../SubmitButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -20,24 +19,6 @@ const styles = StyleSheet.create({
   },
 });
 const CreateReviewForm = ({ onSubmit }) => {
-  const [isCreating, setIsCreating] = useState(false);
-
-  const handleSubmit = async () => {
-    setIsCreating(true);
-    // await onSubmit();
-    // setIsCreating((isCreating) => !isCreating);
-  };
-
-  useEffect(() => {
-    const executeSubmit = async () => {
-      await onSubmit();
-      setIsCreating(false);
-    };
-    if (isCreating) {
-      executeSubmit();
-    }
-  }, [isCreating]);
-
   return (
     <View style={styles.container}>
       {/* <FormikTextInput
@@ -52,19 +33,11 @@ const CreateReviewForm = ({ onSubmit }) => {
       /> */}
       <FormikTextInput name="rating" placeholder="Rating between 0 and 100" />
       <FormikTextInput name="text" placeholder="Review" multiline />
-      <Pressable
-        onPress={handleSubmit}
-        disabled={isCreating}
+      <SubmitButton
+        onSubmit={onSubmit}
+        buttonLabel="Create a Review"
         style={styles.button}
-      >
-        {isCreating ? (
-          <ActivityIndicator size="small" color={theme.colors.white} />
-        ) : (
-          <Text color="white" fontWeight="bold">
-            Create a Review
-          </Text>
-        )}
-      </Pressable>
+      />
     </View>
   );
 };

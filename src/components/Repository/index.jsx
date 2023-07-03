@@ -4,9 +4,7 @@ import useRepository from "../../hooks/useRepository";
 import RepositoryContainer from "./RepositoryContainer";
 
 const Repository = ({ route }) => {
-  // console.log(route);
   const repositoryId = route?.params?.id ? route.params.id : null;
-  // const { repositoryId } = useParams();
   const first = 5;
   const variables = {
     repositoryId,
@@ -46,7 +44,6 @@ const Repository = ({ route }) => {
   };
 
   const onEndReached = () => {
-    // console.log("end reached!");
     fetchMore();
   };
 

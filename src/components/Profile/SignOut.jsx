@@ -1,8 +1,8 @@
 import useSignOut from "../../hooks/useSignOut";
 import { confirmAction } from "../../utils/alert";
-import { Pressable, StyleSheet } from "react-native";
-import Text from "../Text";
+import { StyleSheet } from "react-native";
 import theme from "../../theme";
+import SubmitButton from "../SubmitButton";
 
 const styles = StyleSheet.create({
   button: {
@@ -34,11 +34,11 @@ const SignOut = () => {
   };
 
   return (
-    <Pressable onPress={onSignOut} style={styles.button}>
-      <Text color="white" fontWeight="bold">
-        Sign Out
-      </Text>
-    </Pressable>
+    <SubmitButton
+      onSubmit={onSignOut}
+      buttonLabel="Sign out"
+      style={styles.button}
+    />
   );
 };
 

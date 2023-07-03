@@ -1,9 +1,8 @@
-import { Pressable, View, StyleSheet, ActivityIndicator } from "react-native";
+import { View, StyleSheet } from "react-native";
 import FormikTextInput from "../FormikTextInput";
 import theme from "../../theme";
-import Text from "../Text";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import SubmitButton from "../SubmitButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -21,40 +20,15 @@ const styles = StyleSheet.create({
 });
 
 const SignInForm = ({ onSubmit }) => {
-  const [isCreating, setIsCreating] = useState(false);
-
-  const handleSubmit = async () => {
-    setIsCreating(true);
-    // await onSubmit();
-    // setIsCreating((isCreating) => !isCreating);
-  };
-
-  useEffect(() => {
-    const executeSubmit = async () => {
-      await onSubmit();
-      setIsCreating(false);
-    };
-
-    if (isCreating) {
-      executeSubmit();
-    }
-  }, [isCreating]);
   return (
     <View style={styles.container}>
       <FormikTextInput name="username" placeholder="Username" />
       <FormikTextInput name="password" placeholder="Password" secureTextEntry />
-      <Pressable
-        onPress={handleSubmit}
-        disabled={isCreating}
+      <SubmitButton
+        onSubmit={onSubmit}
+        buttonLabel="Sign in"
         style={styles.button}
-      >
-        {isCreating && (
-          <ActivityIndicator size="small" color={theme.colors.white} />
-        )}
-        <Text color="white" fontWeight="bold">
-          Sign in
-        </Text>
-      </Pressable>
+      />
     </View>
   );
 };

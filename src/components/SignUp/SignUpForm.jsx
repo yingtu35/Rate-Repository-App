@@ -1,8 +1,8 @@
-import { Pressable, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import FormikTextInput from "../FormikTextInput";
 import theme from "../../theme";
-import Text from "../Text";
 import PropTypes from "prop-types";
+import SubmitButton from "../SubmitButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -29,17 +29,17 @@ const SignUpForm = ({ onSubmit }) => {
         placeholder="Confirm your password"
         secureTextEntry
       />
-      <Pressable onPress={onSubmit} style={styles.button}>
-        <Text color="white" fontWeight="bold">
-          Sign up
-        </Text>
-      </Pressable>
+      <SubmitButton
+        onSubmit={onSubmit}
+        buttonLabel="Sign up"
+        style={styles.button}
+      />
     </View>
   );
 };
 
 export default SignUpForm;
 
-SignUpForm.PropTypes = {
+SignUpForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };

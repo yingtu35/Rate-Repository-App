@@ -1,8 +1,8 @@
-import { Pressable, View, StyleSheet } from "react-native";
-import Text from "../Text";
+import { View, StyleSheet } from "react-native";
 import ReviewItem from "../ReviewItem";
 import theme from "../../theme";
 import PropTypes from "prop-types";
+import SubmitButton from "../SubmitButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -33,22 +33,16 @@ const MyReviewItem = ({ review, onViewRepository, onDelete }) => {
     <View style={styles.container}>
       <ReviewItem review={review} title={review.repositoryId} />
       <View style={styles.buttonGroup}>
-        <Pressable
-          onPress={() => onViewRepository(review.repositoryId)}
+        <SubmitButton
+          onSubmit={() => onViewRepository(review.repositoryId)}
+          buttonLabel="View repository"
           style={[styles.button, styles.viewButton]}
-        >
-          <Text color="white" fontWeight="bold">
-            View repository
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={() => onDelete(review.id)}
+        />
+        <SubmitButton
+          onSubmit={() => onDelete(review.id)}
+          buttonLabel="Delete Review"
           style={[styles.button, styles.deleteButton]}
-        >
-          <Text color="white" fontWeight="bold">
-            Delete Review
-          </Text>
-        </Pressable>
+        />
       </View>
     </View>
   );
