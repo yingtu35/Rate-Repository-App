@@ -1,9 +1,10 @@
-import { FlatList } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 import ItemSeparator from "../ItemSeparator";
 import Text from "../Text";
 import MyReviewItem from "./MyReviewItem";
 import MyReviewEmpty from "./MyReviewEmpty";
 import Loader from "../Loader";
+import theme from "../../theme";
 
 const MyReviewContainer = ({
   loading,
@@ -12,8 +13,11 @@ const MyReviewContainer = ({
   onViewRepository,
   onDelete,
   onEndReached,
+  refreshing,
+  onRefresh,
+  firstMount,
 }) => {
-  if (loading) return <Loader />;
+  if (loading && firstMount) return <Loader />;
   if (error) return <Text>{error.message}</Text>;
 
   const reviewNodes = me ? me.reviews.edges.map((edge) => edge.node) : [];
@@ -31,10 +35,16 @@ const MyReviewContainer = ({
           onDelete={onDelete}
         />
       )}
-      // ListFooterComponent={ItemSeparator}
       initialNumToRender={6}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.5}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          tintColor={theme.colors.primary}
+        />
+      }
     />
   );
 };

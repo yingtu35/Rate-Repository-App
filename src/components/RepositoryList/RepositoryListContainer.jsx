@@ -1,10 +1,12 @@
 import React from "react";
-import { Pressable, FlatList, View } from "react-native";
+import { Pressable, FlatList, View, RefreshControl } from "react-native";
 import RepositoryItem from "../RepositoryItem";
 import Text from "../Text";
 import ItemSeparator from "../ItemSeparator";
 import RepositoryListEmpty from "./RespositryEmpty";
 import RepositoryListHeader from "./RepositoryListHeader";
+import theme from "../../theme";
+import Loader from "../Loader";
 
 export default class RepositoryListContainer extends React.Component {
   renderHeader = () => {
@@ -21,9 +23,18 @@ export default class RepositoryListContainer extends React.Component {
   };
 
   render() {
-    const { error, repositories, onEndReached, onRepositoryPress } = this.props;
+    const {
+      loading,
+      error,
+      repositories,
+      onEndReached,
+      onRepositoryPress,
+      refreshing,
+      onRefresh,
+      firstMount,
+    } = this.props;
 
-    // if (loading) return <Loader />;
+    if (loading && firstMount) return <Loader />;
     if (error) {
       console.log(error.networkError);
       return (
@@ -52,6 +63,13 @@ export default class RepositoryListContainer extends React.Component {
         initialNumToRender={6}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={theme.colors.primary}
+          />
+        }
         // other props
       />
     );

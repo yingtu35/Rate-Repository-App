@@ -2,6 +2,8 @@
 import useCreateReview from "../../hooks/useCreateReview";
 import useRepository from "../../hooks/useRepository";
 import RepositoryContainer from "./RepositoryContainer";
+import useMount from "../../hooks/useMount";
+import useRefresh from "../../hooks/useRefresh";
 
 const Repository = ({ route }) => {
   const repositoryId = route?.params?.id ? route.params.id : null;
@@ -13,6 +15,8 @@ const Repository = ({ route }) => {
   const { loading, error, repository, fetchMore, refetch } =
     useRepository(variables);
   const [createReview] = useCreateReview();
+  const [refreshing, onRefresh] = useRefresh({ refresh: refetch });
+  const { firstMount } = useMount();
 
   const onSubmit = async (values, actions) => {
     const { ownerName, repositoryName, rating, text } = values;
@@ -54,6 +58,9 @@ const Repository = ({ route }) => {
       repository={repository}
       onSubmit={onSubmit}
       onEndReached={onEndReached}
+      refreshing={refreshing}
+      onRefresh={onRefresh}
+      firstMount={firstMount}
     />
   );
 };

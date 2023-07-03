@@ -2,6 +2,8 @@ import useCurrentUser from "../../hooks/useCurrentUser";
 import useDeleteReview from "../../hooks/useDeleteReview";
 import MyReviewContainer from "./MyReviewContainer";
 import { confirmAction } from "../../utils/alert";
+import useRefresh from "../../hooks/useRefresh";
+import useMount from "../../hooks/useMount";
 
 const MyReview = ({ navigation }) => {
   const first = 5;
@@ -10,8 +12,10 @@ const MyReview = ({ navigation }) => {
     withReviews,
     first,
   };
+  const { firstMount } = useMount();
   const { loading, error, me, refetch, fetchMore } = useCurrentUser(variables);
   const [deleteReview] = useDeleteReview();
+  const [refreshing, onRefresh] = useRefresh({ refresh: refetch });
 
   const onEndReached = () => {
     // console.log("the end has reached");
@@ -49,6 +53,9 @@ const MyReview = ({ navigation }) => {
       onViewRepository={onViewRepository}
       onDelete={onDelete}
       onEndReached={onEndReached}
+      refreshing={refreshing}
+      onRefresh={onRefresh}
+      firstMount={firstMount}
     />
   );
 };

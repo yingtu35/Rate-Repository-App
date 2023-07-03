@@ -2,6 +2,8 @@ import { useState } from "react";
 import useRepositories from "../../hooks/useRepositories";
 import RepositoryListContainer from "./RepositoryListContainer";
 import { useDebounce } from "use-debounce";
+import useRefresh from "../../hooks/useRefresh";
+import useMount from "../../hooks/useMount";
 // import { useNavigate } from "react-router-native";
 
 const orderMapping = {
@@ -20,7 +22,7 @@ const orderMapping = {
 };
 
 const RepositoryList = ({ navigation }) => {
-  // const navigate = useNavigate();
+  const { firstMount } = useMount();
   const [orderMethod, setOrderMethod] = useState("latest");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [debounceSearch] = useDebounce(searchKeyword, 500);
@@ -32,8 +34,10 @@ const RepositoryList = ({ navigation }) => {
     first,
   };
   // console.log(variables);
-  const { loading, error, repositories, fetchMore } =
+  const { loading, error, repositories, refetch, fetchMore } =
     useRepositories(variables);
+
+  const [refreshing, onRefresh] = useRefresh({ refresh: refetch });
 
   const onEndReached = () => {
     fetchMore();
@@ -55,6 +59,9 @@ const RepositoryList = ({ navigation }) => {
       setSearchKeyword={setSearchKeyword}
       orderMethod={orderMethod}
       setOrderMethod={setOrderMethod}
+      refreshing={refreshing}
+      onRefresh={onRefresh}
+      firstMount={firstMount}
     />
   );
 };
