@@ -24,10 +24,7 @@ export default {
     },
   },
   web: {
+    bundler: "metro",
     favicon: "./assets/favicon.png",
-  },
-  extra: {
-    env: process.env.ENV,
-    apolloUri: process.env.APOLLO_URI,
   },
 };

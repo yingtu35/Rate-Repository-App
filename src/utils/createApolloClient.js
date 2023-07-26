@@ -1,10 +1,14 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import Constants from "expo-constants";
+// import Constants from "expo-constants";
 import { setContext } from "@apollo/client/link/context";
 import { relayStylePagination } from "@apollo/client/utilities";
 
+// ! process.env not working due to unknown reason, return undefined
+console.log(process.env.EXPO_PUBLIC_API_APOLLO_URI)
+
 const httpLink = createHttpLink({
-  uri: Constants.manifest.extra.apolloUri,
+  // uri: process.env.EXPO_PUBLIC_API_APOLLO_URI,i
+  uri: "http://192.168.1.111:4000/graphql",
 });
 
 const cache = new InMemoryCache({
