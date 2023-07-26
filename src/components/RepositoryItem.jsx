@@ -1,7 +1,8 @@
 import { View, StyleSheet, Image } from "react-native";
 import RepositoryStat from "./RepositoryStat";
-import theme from "../../theme";
-import Text from "../Text";
+import theme from "../theme";
+import Text from "./Text";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +12,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
-    // alignItems: "stretch",
   },
   avatar: {
     width: 40,
@@ -42,7 +42,9 @@ const RepositoryItem = ({ repo }) => {
       <View style={styles.repoInfo}>
         <Image style={styles.avatar} source={{ uri: repo.ownerAvatarUrl }} />
         <View style={styles.repoDetails}>
-          <Text fontWeight="bold">{repo.fullName}</Text>
+          <Text fontSize="subheading" fontWeight="bold">
+            {repo.fullName}
+          </Text>
           <Text color="textSecondary" style={{ flexShrink: 1 }}>
             {repo.description}
           </Text>
@@ -62,3 +64,17 @@ const RepositoryItem = ({ repo }) => {
 };
 
 export default RepositoryItem;
+
+RepositoryItem.propTypes = {
+  repo: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired,
+    ratingAverage: PropTypes.number.isRequired,
+    reviewCount: PropTypes.number.isRequired,
+    stargazersCount: PropTypes.number.isRequired,
+    forksCount: PropTypes.number.isRequired,
+    ownerAvatarUrl: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
+  }),
+};

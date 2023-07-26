@@ -1,4 +1,4 @@
-import { Platform } from "react-native"
+import { Platform } from "react-native";
 
 const theme = {
   colors: {
@@ -13,6 +13,8 @@ const theme = {
   fontSizes: {
     body: 14,
     subheading: 16,
+    title: 48,
+    subtitle: 32,
   },
   fonts: {
     main: Platform.select({
@@ -25,6 +27,6 @@ const theme = {
     normal: "400",
     bold: "700",
   },
-}
+};
 
-export default theme
+export default theme;

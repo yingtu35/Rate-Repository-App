@@ -1,40 +1,109 @@
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Text from "./Text";
+import useCurrentUser from "../hooks/useCurrentUser";
 import RepositoryList from "./RepositoryList";
-import Repository from "./Repository";
-import AppBar from "./AppBar";
-import { View, StyleSheet } from "react-native";
-import { Navigate, Route, Routes } from "react-router-native";
 import SignIn from "./SignIn";
-import CreateReview from "./CreateReview";
 import SignUp from "./SignUp";
+import Repository from "./Repository";
 import MyReview from "./MyReview";
+import Profile from "./Profile";
+import Loader from "./Loader";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#e1e4e8",
-    flexGrow: 1,
-    flexShrink: 1,
-  },
-});
+const Tab = createBottomTabNavigator();
 
-const Main = () => {
+const MyReviewStack = createNativeStackNavigator();
+
+const MyReviewTabs = () => {
   return (
-    <View style={styles.container}>
-      <AppBar />
-      <Routes>
-        <Route path="/" element={<RepositoryList />}></Route>
-        <Route path="/RepositoryList" element={<RepositoryList />}></Route>
-        <Route
-          path="/Repository/:repositoryId"
-          element={<Repository />}
-        ></Route>
-        <Route path="/Reviews/me" element={<MyReview />}></Route>
-        <Route path="/Reviews" element={<CreateReview />}></Route>
-        <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/SignIn" element={<SignIn />}></Route>
-        <Route path="*" element={<Navigate to="/" replace />}></Route>
-      </Routes>
-    </View>
+    <MyReviewStack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
+      <MyReviewStack.Screen
+        name="MyReviewsHome"
+        component={MyReview}
+        options={{ title: "MyReviews" }}
+      />
+      <MyReviewStack.Screen
+        name="Repository"
+        component={Repository}
+        options={({ route }) => ({
+          title: route?.params?.id ? `${route?.params.id}` : "Repository",
+        })}
+      />
+    </MyReviewStack.Navigator>
   );
 };
 
-export default Main;
+const HomeTabs = () => {
+  const { loading, error, me } = useCurrentUser();
+
+  if (loading) return <Loader />;
+  if (error) return <Text>{error.message}</Text>;
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          const icons = {
+            Repositories: focused ? "md-home" : "md-home-outline",
+            MyReviews: focused ? "md-albums" : "md-albums-outline",
+            Profile: focused ? "ios-person" : "ios-person-outline",
+            SignIn: focused ? "ios-log-in" : "ios-log-in-outline",
+            SignUp: focused ? "ios-person-add" : "ios-person-add-outline",
+          };
+
+          return (
+            <Ionicons name={icons[route.name]} color={color} size={size} />
+          );
+        },
+      })}
+    >
+      {me ? (
+        <>
+          <Tab.Screen name="Repositories" component={RepositoryList} />
+          <Tab.Screen
+            name="MyReviews"
+            component={MyReviewTabs}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen name="Profile" component={Profile} />
+        </>
+      ) : (
+        <>
+          <Tab.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{ headerTitle: "Rate Repository App" }}
+          />
+          <Tab.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{ headerTitle: "Rate Repository App" }}
+          />
+        </>
+      )}
+    </Tab.Navigator>
+  );
+};
+
+const Stack = createNativeStackNavigator();
+
+function Test() {
+  return (
+    <Stack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
+      <Stack.Screen
+        name="Home"
+        component={HomeTabs}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Repository"
+        component={Repository}
+        options={({ route }) => ({
+          title: route?.params?.id ? `${route?.params.id}` : "Repository",
+        })}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export default Test;

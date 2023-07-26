@@ -3,6 +3,7 @@ import { GET_USER } from "../graphql/queries";
 
 const useCurrentUser = (variables = { withReviews: false }) => {
   const { loading, error, data, refetch, fetchMore } = useQuery(GET_USER, {
+    fetchPolicy: "cache-and-network",
     variables,
   });
 

@@ -1,5 +1,5 @@
-import { Text as NativeText, StyleSheet } from "react-native"
-import theme from "../theme"
+import { Text as NativeText, StyleSheet } from "react-native";
+import theme from "../theme";
 
 const styles = StyleSheet.create({
   text: {
@@ -23,10 +23,16 @@ const styles = StyleSheet.create({
   textSubheading: {
     fontSize: theme.fontSizes.subheading,
   },
+  textTitle: {
+    fontSize: theme.fontSizes.title,
+  },
+  textSubTitle: {
+    fontSize: theme.fontSizes.subtitle,
+  },
   textBold: {
     fontWeight: theme.fontWeights.bold,
   },
-})
+});
 
 const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
   const textStyle = [
@@ -36,11 +42,13 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     color === "barTab" && styles.colorBarTab,
     color === "white" && styles.colorWhite,
     fontSize === "subheading" && styles.textSubheading,
+    fontSize === "title" && styles.textTitle,
+    fontSize === "subtitle" && styles.textSubTitle,
     fontWeight === "bold" && styles.textBold,
     style,
-  ]
+  ];
 
-  return <NativeText style={textStyle} {...props} />
-}
+  return <NativeText style={textStyle} {...props} />;
+};
 
-export default Text
+export default Text;
