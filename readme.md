@@ -69,7 +69,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <!-- <li><a href="#usage">Usage</a></li> -->
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -152,7 +152,7 @@ Follow these steps to run the mobile application using simulator or your physica
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+<!-- ## Usage
 
 Enjoy the short demo using ios simulator to see how Rate-Repository-App works.
 
@@ -160,7 +160,7 @@ Enjoy the short demo using ios simulator to see how Rate-Repository-App works.
 <!-- 
 [![Rate-Repository-App demo](images/video%20thumbnail.png)](http://www.youtube.com/watch?v=MnJX33HtIVE "Rate-Repository-App demo") -->
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
 
