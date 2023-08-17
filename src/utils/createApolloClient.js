@@ -3,8 +3,11 @@ import Constants from "expo-constants";
 import { setContext } from "@apollo/client/link/context";
 import { relayStylePagination } from "@apollo/client/utilities";
 
+// ! process.env not working due to unknown reason, return undefined
+console.log(process.env.EXPO_PUBLIC_API_APOLLO_URI)
+
 const httpLink = createHttpLink({
-  uri: Constants.manifest.extra.apolloUri,
+  uri: Constants.manifest.extra.apolloUri
 });
 
 const cache = new InMemoryCache({
