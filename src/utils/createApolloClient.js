@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-// import Constants from "expo-constants";
+import Constants from "expo-constants";
 import { setContext } from "@apollo/client/link/context";
 import { relayStylePagination } from "@apollo/client/utilities";
 
@@ -7,8 +7,7 @@ import { relayStylePagination } from "@apollo/client/utilities";
 console.log(process.env.EXPO_PUBLIC_API_APOLLO_URI)
 
 const httpLink = createHttpLink({
-  // uri: process.env.EXPO_PUBLIC_API_APOLLO_URI,i
-  uri: "http://192.168.1.111:4000/graphql",
+  uri: Constants.manifest.extra.apolloUri
 });
 
 const cache = new InMemoryCache({

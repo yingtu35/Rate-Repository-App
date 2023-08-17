@@ -30,9 +30,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/yingtu35/Rate-Repository-App">
+  <!-- <a href="https://github.com/yingtu35/Rate-Repository-App">
     <img src="assets/icon1.png" alt="Logo" width="300">
-  </a>
+  </a> -->
 
 <h3 align="center">Rate-Repository-App</h3>
 

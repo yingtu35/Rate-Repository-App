@@ -8,23 +8,27 @@ export default {
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
   splash: {
-    image: "./assets/splash1.png",
+    image: "./assets/splash.png",
     resizeMode: "contain",
     backgroundColor: "#0366d6",
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    icon: "./assets/icon1.png",
+    icon: "./assets/icon.png",
     supportsTablet: true,
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: "./assets/adaptive-icon1.png",
+      foregroundImage: "./assets/adaptive-icon.png",
       backgroundColor: "#0366d6",
     },
   },
   web: {
     bundler: "metro",
     favicon: "./assets/favicon.png",
+  },
+  extra: {
+    env: process.env.ENV,
+    apolloUri: process.env.APOLLO_URI
   },
 };
